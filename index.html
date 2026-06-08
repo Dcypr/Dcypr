@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>DCYPR | Gaming & PC Builder</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #070707;
+    --surface: rgba(255,255,255,0.04);
+    --surface-2: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.08);
+    --text: #f5f5f5;
+    --muted: #8a8a8a;
+    --accent: #7df9ff;
+
+    --radius: 16px;
+    --radius-lg: 20px;
+
+    --transition: 0.25s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* BACKGROUND */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+}
+
+body::before {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(125,249,255,0.08), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.04), transparent 45%);
+}
+
+body::after {
+    z-index: -1;
+    background:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.5;
+}
+
+/* NAV */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(7,7,7,0.6);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    z-index: 999;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 14px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--text);
+}
+
+/* SOCIAL DOCK */
+.social-float {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 10px;
+    border-radius: var(--radius);
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+    z-index: 1000;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 44px;
+    padding: 10px 12px;
+
+    overflow: hidden;
+    white-space: nowrap;
+
+    text-decoration: none;
+    color: var(--muted);
+
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.social-item img {
+    width: 18px;
+    height: 18px;
+    opacity: 0.6;
+    filter: grayscale(100%);
+    transition: var(--transition);
+}
+
+.social-item span {
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: var(--transition);
+    font-size: 0.85rem;
+}
+
+.social-item:hover {
+    width: 150px;
+    background: var(--surface-2);
+    color: var(--text);
+}
+
+.social-item:hover img {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.social-item:hover span {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 20px 60px;
+}
+
+.profile {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+    box-shadow: 0 0 50px rgba(125,249,255,0.12);
+    transition: var(--transition);
+}
+
+.profile:hover {
+    transform: scale(1.05);
+}
+
+h1 {
+    font-size: clamp(2.8rem, 8vw, 6.5rem);
+    font-weight: 800;
+}
+
+h2 {
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+p {
+    color: var(--muted);
+    max-width: 650px;
+    margin: 20px auto;
+    line-height: 1.7;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 999px;
+    background: white;
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.btn:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+}
+
+/* SECTIONS */
+section {
+    padding: 90px 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.section-title span {
+    color: var(--accent);
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(125,249,255,0.35);
+}
+
+/* VIDEO GRID */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.video-card {
+    position: relative;
+    display: block;
+    height: 300px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    background: #111;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.video-card:hover {
+    transform: translateY(-6px);
+}
+
+.video-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 14px;
+}
+
+.video-title {
+    font-weight: 600;
+}
+
+.video-meta {
+    font-size: 0.85rem;
+    color: #ccc;
+}
+
+.pinned-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255,45,85,0.85);
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .social-float {
+        right: 50%;
+        bottom: 18px;
+        transform: translateX(50%);
+        flex-direction: row;
+    }
+
+    .social-item {
+        width: auto;
+    }
+
+    .social-item span {
+        opacity: 1;
+        transform: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo">DCYPR</div>
+        <div class="nav-links">
+            <a href="#content">Content</a>
+            <a href="#pinned">Pinned</a>
+            <a href="#about">About</a>
+            <a href="https://www.tiktok.com/@Dcypr" target="_blank">TikTok</a>
+        </div>
+    </div>
+</nav>
+
+<!-- SOCIAL -->
+<div class="social-float">
+    <a href="https://www.facebook.com/profile.php?id=100011734581244" class="social-item" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
+        <span>Facebook</span>
+    </a>
+
+    <a href="https://www.instagram.com/d.cypr/" class="social-item" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
+        <span>Instagram</span>
+    </a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <a href="https://www.tiktok.com/@Dcypr" target="_blank">
+            <img src="pfp.png" class="profile">
+        </a>
+
+        <h1>DCYPR</h1>
+        <h2>Gaming • PC Builder</h2>
+
+        <p>
+            Clean setups, powerful PCs, gaming highlights, hardware reviews,
+            and performance-focused content for gamers.
+        </p>
+
+        <a class="btn" href="https://www.tiktok.com/@Dcypr" target="_blank">Follow on TikTok</a>
+    </div>
+</section>
+
+<!-- CONTENT -->
+<section id="content">
+    <div class="container">
+        <h2 class="section-title">Featured <span>Content</span></h2>
+
+        <div class="grid">
+            <div class="card"><h3>🎮 Gaming</h3><p>Highlights and gameplay moments.</p></div>
+            <div class="card"><h3>🖥️ PC Builds</h3><p>Custom setups and upgrades.</p></div>
+            <div class="card"><h3>⚡ Hardware</h3><p>Benchmarks and performance tests.</p></div>
+            <div class="card"><h3>🚀 Tech Tips</h3><p>Optimization guides.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- PINNED -->
+<section id="pinned">
+    <div class="container">
+        <h2 class="section-title">Pinned <span>Videos</span></h2>
+
+        <div class="video-grid">
+            <div class="video-card">
+                <img src="video1.png">
+                <span class="pinned-badge">Pinned</span>
+                <div class="video-overlay">
+                    <div class="video-title">Gaming PC Build</div>
+                    <div class="video-meta">20.2K views</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <img src="video2.png">
+                <span class="pinned-badge">Pinned</span>
+                <div class="video-overlay">
+                    <div class="video-title">PC Fan Showcase</div>
+                    <div class="video-meta">112K views</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <img src="video3.png">
+                <span class="pinned-badge">Pinned</span>
+                <div class="video-overlay">
+                    <div class="video-title">Monitor Arm Install</div>
+                    <div class="video-meta">48K views</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="container">
+        <h2 class="section-title">About <span>Me</span></h2>
+
+        <div class="card">
+            <p>
+                I'm <strong>Dcypr</strong>, a gaming creator focused on performance,
+                aesthetics, and clean setups.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    © 2026 DCYPR • <a href="https://www.tiktok.com/@dcypr">@dcypr</a>
+</footer>
+
+</body>
+</html>
