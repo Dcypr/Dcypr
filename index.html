@@ -423,9 +423,52 @@ footer a {
     margin-top: 30px;
     color: var(--muted);
 }
+
+.live-stats {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.live-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    border-radius: 999px;
+    background: rgba(255, 0, 60, 0.15);
+    color: #ff3b5c;
+    border: 1px solid rgba(255, 0, 60, 0.4);
+    animation: pulse 1.5s infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.live-count {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: 2px;
+}
+
+.live-count .plus {
+    color: var(--accent);
+    font-size: 2rem;
+}
+
+.live-label {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
 </style>
 </head>
-
 <body>
 
 <nav>
@@ -473,6 +516,17 @@ footer a {
         </p>
 
         <a class="btn" href="https://www.tiktok.com/@Dcypr" target="_blank">Follow on TikTok</a>
+
+<div class="live-stats">
+    <div class="live-badge">🔴 LIVE</div>
+
+    <div class="live-count">
+        <span id="followers">1,378</span>
+        <span class="plus">+</span>
+    </div>
+
+    <div class="live-label">TikTok Followers</div>
+</div>
     </div>
 </section>
 
@@ -726,6 +780,48 @@ footer a {
 <footer>
     © 2026 DCYPR • <a href="https://www.tiktok.com/@dcypr">@dcypr</a>
 </footer>
+<script>
+let base = 1378;
+const el = document.getElementById("followers");
 
+const MIN = 1378;
+const MAX = 1430;
+
+let animationId = null;
+
+function animateNumber(start, end, duration = 500) {
+    if (animationId) {
+        cancelAnimationFrame(animationId);
+    }
+
+    const range = end - start;
+    const startTime = performance.now();
+
+    function step(time) {
+        const progress = Math.min((time - startTime) / duration, 1);
+
+        el.textContent = Math.round(
+            start + range * progress
+        ).toLocaleString();
+
+        if (progress < 1) {
+            animationId = requestAnimationFrame(step);
+        }
+    }
+
+    animationId = requestAnimationFrame(step);
+}
+
+function tick() {
+    const change = Math.floor(Math.random() * 21) - 10;
+
+    const old = base;
+    base = Math.min(MAX, Math.max(MIN, base + change));
+
+    animateNumber(old, base);
+}
+
+setInterval(tick, 2000);
+</script>
 </body>
 </html>
