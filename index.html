@@ -368,6 +368,49 @@ footer a {
         transform: none;
     }
 }
+/* SUPPORT SECTION */
+.support-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.support-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.support-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(125,249,255,0.35);
+}
+
+.donation-qr {
+    width: 220px;
+    max-width: 100%;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.support-card h4 {
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.support-card p {
+    margin: 6px 0;
+}
+
+.support-thanks {
+    text-align: center;
+    margin-top: 30px;
+    color: var(--muted);
+}
 </style>
 </head>
 
@@ -480,6 +523,47 @@ footer a {
 
 
         </div>
+    </div>
+</section>
+
+<!-- SUPPORT DCYPR -->
+<section id="support">
+    <div class="container">
+
+        <h2 class="section-title">Support <span>DCYPR</span></h2>
+
+        <p style="text-align:center;">
+            Enjoying the content? Feel free to support future PC upgrades,
+            gaming gear, setup improvements, and content creation.
+        </p>
+
+        <div class="support-methods">
+
+            <!-- GCASH -->
+            <div class="support-card">
+                <img src="gcash-qr.png" alt="GCash QR" class="donation-qr">
+
+                <h4>GCash</h4>
+                <p>Dave C.</p>
+                <p>0935 882 7599
+            </div>
+
+            <!-- BDO -->
+            <div class="support-card">
+	    <img src="Paypal-qr.png" alt="Paypal QR" class="donation-qr">
+
+                <h4>BDO Bank</h4>
+                <p>Dave Curimatmat</p>
+                <p>0107 0956 6397</p>
+            </div>
+
+        </div>
+
+        <p class="support-thanks">
+            💜 Every donation and sponsorship helps support future content.
+            Thank you for being part of the journey.
+        </p>
+
     </div>
 </section>
 
