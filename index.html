@@ -368,6 +368,18 @@ footer a {
         transform: none;
     }
 }
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 12px;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+}
 /* SUPPORT SECTION */
 .support-methods {
     display: grid;
@@ -420,11 +432,14 @@ footer a {
     <div class="nav-container">
         <div class="logo">DCYPR</div>
         <div class="nav-links">
-            <a href="#content">Content</a>
-            <a href="#pinned">Pinned</a>
-            <a href="#about">About</a>
-            <a href="https://www.tiktok.com/@Dcypr" target="_blank">TikTok</a>
-        </div>
+   	   <a href="#content">Content</a>
+       	   <a href="#gear">Gear</a>
+  	   <a href="#support">Support</a>
+   	   <a href="#latest">Latest</a>
+    	   <a href="#pinned">Pinned</a>
+    	   <a href="#about">About</a>
+    	   <a href="https://www.tiktok.com/@Dcypr" target="_blank">TikTok</a>
+	</div>
     </div>
 </nav>
 
