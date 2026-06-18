@@ -887,11 +887,11 @@ async function updateFollowers() {
         const data = await response.json();
 
         document.getElementById("followers").textContent =
-            data.followerCount.toLocaleString();
+            data.followers.toLocaleString();
 
     } catch (error) {
         console.error(error);
-        document.getElementById("followers").textContent = "1,378";
+        document.getElementById("followers").textContent = "Offline";
     }
 }
 
