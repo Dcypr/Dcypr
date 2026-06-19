@@ -891,15 +891,31 @@ async function updateFollowers() {
 
         const data = await response.json();
 
-        document.getElementById("followers").textContent =
-            data.followers.toLocaleString();
+        animateCount(document.getElementById("followers"), data.followers);
+    Number(data.followers).toLocaleString();
 
     } catch (err) {
         console.error(err);
         document.getElementById("followers").textContent = "Offline";
     }
 }
+function animateCount(el, newValue) {
+    let current = parseInt(el.textContent.replace(/,/g, "")) || 0;
+    const target = Number(newValue);
 
+    const step = Math.ceil((target - current) / 15);
+
+    const interval = setInterval(() => {
+        current += step;
+
+        if (current >= target) {
+            current = target;
+            clearInterval(interval);
+        }
+
+        el.textContent = current.toLocaleString();
+    }, 20);
+}
 updateFollowers();
 setInterval(updateFollowers, 10000);
 </script>
