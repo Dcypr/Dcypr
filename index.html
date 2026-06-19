@@ -880,7 +880,9 @@ footer a {
 <script>
 async function updateFollowers() {
     try {
-        const response = await fetch("/api/followers");
+        const response = await fetch(
+"https://project-dcypr-api-git-main-dcypr.vercel.app/api/followers"
+);
 
         if (!response.ok) {
             throw new Error("API failed");
